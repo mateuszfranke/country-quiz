@@ -1,5 +1,5 @@
 <div>
-  <div class="answer-btn" >
+  <div class="answer-btn"  (click)="onAnswerCheck()" [ngClass]="correctAnswer?ngClassCorrect:ngClassInCorrect">
     <div class="letter-text">{{letter}}</div>
     <div class="answer-text">{{answer}}</div>
   </div>

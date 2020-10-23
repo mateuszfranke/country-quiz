@@ -20,3 +20,19 @@
   justify-self: start;
   margin-left: 20px;
 }
+.answer-btn:hover{
+  background-color: #F9A826;
+  color:white;
+  border: 2px solid #F9A826;
+
+}
+
+.correct-answer{
+  background-color: #60BF88;
+  color: white;
+}
+
+.incorrect-answer{
+  background-color: #EA8282;
+  color: white;
+}
