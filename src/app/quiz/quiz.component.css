@@ -1,0 +1,33 @@
+.container{
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.quiz-container{
+  width: 460px;
+  background: white;
+  min-height: 300px;
+}
+.font-header {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #F2F2F2;
+  font-size: 32px;
+}
+
+.font-question{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #2F527B;
+  font-size: 22px;
+}
+
+.answer-btn{
+  background: #FFFFFF;
+  border: 2px solid rgba(96, 102, 208, 0.7);
+  box-sizing: border-box;
+  border-radius: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  color: rgba(96, 102, 208, 0.7);
+  font-size: 14px;
+}
