@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AnswerService} from '../../services/answer.service';
+import {observable} from 'rxjs';
+import {log} from 'util';
 
 @Component({
   selector: 'app-button',
@@ -10,33 +12,48 @@ export class ButtonComponent implements OnInit {
 
   @Input() answer: string;
   @Input() letter: string;
-  correctAnswer: boolean;
 
-  ngClassCorrect: string = '';
-  ngClassInCorrect: string = '';
+  correctAnswer: boolean;
+  isRed: boolean;
 
   constructor(private answerService: AnswerService) { }
 
   ngOnInit(): void {
+    this.answerService.answerSubject.subscribe(response => {
 
-  }
+      if (response === this.answer)
+      {
+        console.log('should be red' +  response);
+        this.isRed = true;
+      }
 
-  onAnswerCheck(): void{
-    this.ngClassInCorrect = 'incorrect-answer';
-    this.ngClassCorrect = 'correct-answer';
-    this.answerService.answerSubject.subscribe(observer => {
-
-      this.correctAnswer = false;
-      observer.forEach(x => {
-        if (x.name === this.answer )
-        {
-          // console.log(`${x.name} is ${x.isCorrect}`);
-          this.correctAnswer = x.isCorrect;
-        }
-      });
+      if (this.answer === this.answerService.correct)
+      {
+        console.log(`Correct answer is ${this.answer}`);
+        this.correctAnswer = true;
+      }
+      else {
+        this.correctAnswer = false;
+      }
     });
-      // console.log(`${this.answer} is ${this.correctAnswer}`);
   }
+
+
+  getClass(){
+    let cls = '';
+    if (this.correctAnswer)
+    {
+      cls = 'correct-answer';
+    }else if (this.isRed)
+    {
+      cls = 'incorrect-answer';
+
+    }else{
+      cls = 'none';
+    }
+    return cls;
+  }
+
   ngOnChanges(): void{}
 
 }

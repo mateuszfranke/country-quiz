@@ -5,9 +5,9 @@
     <div></div>
       <app-button
         *ngFor="let answer of answers; index as i"
-        (click)="onCheckAnswer(answer)"
-        [answer]="answer"
-        [letter]="letters[i]"
+        (click) ="onCheckAnswer(answer)"
+        [answer] ="answer"
+        [letter] ="letters[i]"
       ></app-button>
   </div>
 </div>

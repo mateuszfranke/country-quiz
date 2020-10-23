@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CountryQuizService} from '../services/country-quiz.service';
 import {AnswerService} from '../services/answer.service';
-import {AnswerModel} from '../model/answer.model';
 
 @Component({
   selector: 'app-quiz',
@@ -15,10 +14,8 @@ export class QuizComponent implements OnInit {
   answers: string[];
   letters: string[] = ['A', 'B', 'C', 'D'];
   question: string;
-  city: string;
   countries: string[];
   correctAnswer: string;
-  isCorrectAnswer: boolean;
 
   ngOnInit(): void {
     this.answers = [];
@@ -36,14 +33,9 @@ export class QuizComponent implements OnInit {
     const min = 0;
     let country = this.answers[Math.floor(Math.random() * (max - min) + min)];
 
-    this.countriesService.getCapitalCityFromCountry(country).subscribe(observer => {
-      this.city = '';
-      this.city = observer;
+      this.countriesService.getCapitalCityFromCountry(country).subscribe(observer => {
       this.correctAnswer = country;
-      console.log(this.correctAnswer);
-      console.log(this.city);
-      this.question = `${this.city} is the capital of`;
-
+      this.question = `${observer} is the capital of`;
     });
   }
 
@@ -59,27 +51,9 @@ export class QuizComponent implements OnInit {
   }
 
   onCheckAnswer(answer: string): void {
-
-    let localanswer: AnswerModel[] = [];
-    this.answers.forEach(x => {
-      if (x === this.correctAnswer) {localanswer.push({isCorrect: true, name: x}); }
-      else {localanswer.push({isCorrect: false, name: x}); }
-
-    });
-    this.answerService.answerSubject.next(localanswer);
-    // if (answer === this.correctAnswer)
-    // {
-    //   alert('wow! correct');
-    //   this.isCorrectAnswer = true;
-    //   this.answerService.answerSubject.next({isCorrect: this.isCorrectAnswer, name: answer});
-    //
-    // }
-    // else{
-    //   this.isCorrectAnswer = false;
-    //   this.answerService.answerSubject.next({isCorrect: this.isCorrectAnswer, name: answer});
-    //
-    //   alert('incorrect!');
-    // }
+    this.answerService.correct = this.correctAnswer;
+    console.log('anser emitted ' + answer);
+    this.answerService.answerSubject.next(answer);
   }
 
 }
