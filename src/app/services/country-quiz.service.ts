@@ -29,7 +29,6 @@ export class CountryQuizService{
       capital = responseData[0].capital;
       return capital;
     }));
-
   }
 
 }
