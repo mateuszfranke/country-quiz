@@ -1,10 +1,13 @@
 <div class="container">
   <div class="font-header">Country quiz</div>
   <div class="quiz-container">
-    <div class="font-question">{{question}}</div>
-    <div class="answers"></div>
-    <div>
-      <div class="answer-btn" *ngFor="let answer of answers; index as i">{{letters[i]}}:{{answer}}</div>
-    </div>
+    <div class="font-question question-bar">{{question}}</div>
+    <div></div>
+      <app-button
+        *ngFor="let answer of answers; index as i"
+        (click)="onCheckAnswer(answer)"
+        [answer]="answer"
+        [letter]="letters[i]"
+      ></app-button>
   </div>
 </div>

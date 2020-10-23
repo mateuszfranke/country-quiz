@@ -5,12 +5,14 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { QuizComponent } from './quiz/quiz.component';
 import {HttpClientModule} from '@angular/common/http';
+import { ButtonComponent } from './quiz/button/button.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
-    QuizComponent
+    QuizComponent,
+    ButtonComponent
   ],
   imports: [
     BrowserModule,

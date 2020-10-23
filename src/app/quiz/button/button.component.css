@@ -1,0 +1,22 @@
+.answer-btn{
+  background: #FFFFFF;
+  border: 2px solid rgba(96, 102, 208, 0.7);
+  box-sizing: border-box;
+  border-radius: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  color: rgba(96, 102, 208, 0.7);
+  font-size: 18px;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  height: 60px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.letter-text{
+  margin-left: 20px;
+}
+.answer-text{
+  justify-self: start;
+  margin-left: 20px;
+}

@@ -55,5 +55,12 @@ export class QuizComponent implements OnInit {
     this.answers = arr;
   }
 
+  onCheckAnswer(answer: string): void {
+    if (answer === this.correctAnswer)
+      alert('wow! correct');
+    else{
+      alert('incorrect!');
+    }
+  }
 
 }
