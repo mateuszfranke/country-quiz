@@ -7,11 +7,14 @@
         (click) ="onCheckAnswer(answer)"
         [answer] ="answer"
         [letter] ="letters[i]"
+        class="btn-answer-m"
       ></app-button>
-    <div class="btn-text" *ngIf="isQuestionAnswered">
+    <div style="display: flex; justify-content: flex-end">
+      <div class="btn-text" *ngIf="isQuestionAnswered">
         <div style="align-self: center;text-align: center;">Next</div>
       </div>
-    <div *ngIf="!isQuestionAnswered" class="blank"></div>
+    </div>
+
   </div>
 <!--  <app-result *ngIf=""></app-result>-->
 </div>
