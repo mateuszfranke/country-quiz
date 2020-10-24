@@ -35,6 +35,7 @@ export class QuizComponent implements OnInit {
     });
     this.scoreService.randomize.subscribe(observer => {
       this.randomQuestion();
+      this.isQuestionAnswered = false;
     });
 
   }
@@ -64,16 +65,21 @@ export class QuizComponent implements OnInit {
     this.answers = arr;
   }
   onCheckAnswer(answer: string): void {
-    this.tempAnswer = answer;
-    this.answerService.correct = this.correctAnswer;
-    this.isQuestionAnswered = true;
-    this.answerService.answerSubject.next(answer);
+    if (!this.isQuestionAnswered)
+    {
+      this.tempAnswer = answer;
+      this.answerService.correct = this.correctAnswer;
+      this.isQuestionAnswered = true;
+      this.answerService.answerSubject.next(answer);
+    }
 
   }
   onNext(): void{
     if (this.correctAnswer === this.tempAnswer )
     {
       this.scoreService.AddPoint();
+      this.isQuestionAnswered = false;
+      this.randomQuestion();
     }else{
       this.scoreService.GameFinished();
     }
