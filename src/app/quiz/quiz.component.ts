@@ -30,10 +30,18 @@ export class QuizComponent implements OnInit {
     this.countriesService.getCountries().subscribe(observer => {
       this.countries = [];
       this.countries = observer;
-      this.get4RandomCountries();
-      this.prepareQuestionAndAnswer();
+      this.randomQuestion();
+
+    });
+    this.scoreService.randomize.subscribe(observer => {
+      this.randomQuestion();
     });
 
+  }
+
+  randomQuestion(): void{
+    this.get4RandomCountries();
+    this.prepareQuestionAndAnswer();
   }
 
   prepareQuestionAndAnswer(): void{
@@ -45,7 +53,6 @@ export class QuizComponent implements OnInit {
       this.question = `${observer} is the capital of`;
     });
   }
-
   get4RandomCountries(): void{
     const arr: string[] = [];
     const max: number = (this.countries.length - 1);
@@ -56,7 +63,6 @@ export class QuizComponent implements OnInit {
     }
     this.answers = arr;
   }
-
   onCheckAnswer(answer: string): void {
     this.tempAnswer = answer;
     this.answerService.correct = this.correctAnswer;

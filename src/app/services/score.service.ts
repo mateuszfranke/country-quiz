@@ -1,9 +1,11 @@
 import {Injectable} from '@angular/core';
+import {Subject} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class ScoreService {
   private scoreCount: number;
   private isGameActive: boolean;
+  randomize: Subject<any> = new Subject<any>();
 
   constructor() {
     this.scoreCount = 0;

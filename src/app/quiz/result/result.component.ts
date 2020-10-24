@@ -16,8 +16,9 @@ export class ResultComponent implements OnInit {
     this.score = this.scoreService.GetScore();
   }
 
-  onTryAgain(){
+  onTryAgain(): void{
     this.scoreService.StartGame();
+    this.scoreService.randomize.next();
   }
 
 }
