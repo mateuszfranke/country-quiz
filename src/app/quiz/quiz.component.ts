@@ -65,8 +65,8 @@ export class QuizComponent implements OnInit {
     });
   }
   randomizeCategory(): boolean{
-    var number = Math.floor(Math.random() * (100 - 1) + 1);
-    return number % 2 === 1;
+    const randomNumber = Math.floor(Math.random() * (100 - 1) + 1);
+    return randomNumber % 2 === 1;
   }
   get4RandomCountries(): void{
     const arr: string[] = [];
