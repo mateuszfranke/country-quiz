@@ -23,6 +23,9 @@ export class QuizComponent implements OnInit {
   correctAnswer: string;
   isQuestionAnswered: boolean;
   tempAnswer: string;
+  flagQuestion = `Which country does this flag belong to?`;
+  isFlagQuestion: boolean;
+  flagUrl: string;
 
   ngOnInit(): void {
     this.scoreService.StartGame();
@@ -51,8 +54,19 @@ export class QuizComponent implements OnInit {
       let country = this.answers[Math.floor(Math.random() * (max - min) + min)];
       this.countriesService.getCapitalCityFromCountry(country).subscribe(observer => {
       this.correctAnswer = country;
-      this.question = `${observer} is the capital of`;
+      this.isFlagQuestion = this.randomizeCategory();
+      if (!this.isFlagQuestion) {
+        this.question = `${observer.capital} is the capital of`;
+      }
+      else {
+        this.question = this.flagQuestion;
+        this.flagUrl = observer.flag;
+      }
     });
+  }
+  randomizeCategory(): boolean{
+    var number = Math.floor(Math.random() * (100 - 1) + 1);
+    return number % 2 === 1;
   }
   get4RandomCountries(): void{
     const arr: string[] = [];

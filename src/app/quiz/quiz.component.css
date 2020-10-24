@@ -7,7 +7,7 @@
 .quiz-container{
   width: 450px;
   background: white;
-  height: 400px;
+  height: 550px;
   border-radius: 24px;
   padding-left: 40px;
   padding-right: 40px;
@@ -47,4 +47,9 @@
   display: grid;
 }
 
+.flag{
+  margin-top: 50px;
+  height: 100px;
+  width: 200px;
+}
 

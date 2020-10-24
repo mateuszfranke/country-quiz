@@ -22,12 +22,12 @@ export class CountryQuizService{
     }));
   }
 
-  getCapitalCityFromCountry(country: string): Observable<string>{
+  getCapitalCityFromCountry(country: string): Observable<FullCountryHttpModel>{
     const url = `https://restcountries.eu/rest/v2/name/${country}`;
     return this.http.get<FullCountryHttpModel[]>(url).pipe(map(responseData => {
-      let capital: string;
-      capital = responseData[0].capital;
-      return capital;
+      let countryInfo: FullCountryHttpModel = new FullCountryHttpModel();
+      countryInfo = {capital : responseData[0].capital, flag  : responseData[0].flag};
+      return countryInfo;
     }));
   }
 

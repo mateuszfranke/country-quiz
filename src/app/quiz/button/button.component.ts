@@ -20,7 +20,7 @@ export class ButtonComponent implements OnInit {
 
   ngOnInit(): void {
     this.answerService.answerSubject.subscribe(response => {
-
+      this.isRed = false;
       if (response === this.answer)
       {
         this.isRed = true;
@@ -28,10 +28,12 @@ export class ButtonComponent implements OnInit {
       if (this.answer === this.answerService.correct)
       {
         this.correctAnswer = true;
+        this.isRed = false;
       }
       else {
         this.correctAnswer = false;
       }
+      console.log(`${this.answer}, red ${this.isRed}`);
     });
   }
 

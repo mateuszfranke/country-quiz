@@ -1,6 +1,7 @@
 <div class="container">
   <div class="font-header">Country quiz</div>
   <div *ngIf="scoreService.IsGameActive()" class="quiz-container">
+    <img *ngIf="isFlagQuestion" [src]="flagUrl" class="flag">
     <div class="font-question question-bar">{{question}}</div>
     <app-button
         *ngFor="let answer of answers; index as i"
