@@ -1,6 +1,6 @@
 <div class="container">
   <div class="font-header">Country quiz</div>
-  <div class="quiz-container">
+  <div *ngIf="scoreService.IsGameActive()" class="quiz-container">
     <div class="font-question question-bar">{{question}}</div>
     <app-button
         *ngFor="let answer of answers; index as i"
@@ -9,12 +9,15 @@
         [letter] ="letters[i]"
         class="btn-answer-m"
       ></app-button>
-    <div style="display: flex; justify-content: flex-end">
+    <div style="display: flex; justify-content: flex-end" (click)="onNext()">
       <div class="btn-text" *ngIf="isQuestionAnswered">
         <div style="align-self: center;text-align: center;">Next</div>
       </div>
     </div>
 
   </div>
-<!--  <app-result *ngIf=""></app-result>-->
+  <div *ngIf="!scoreService.IsGameActive()"  class="quiz-container">
+      <app-result></app-result>
+
+  </div>
 </div>

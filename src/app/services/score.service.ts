@@ -15,7 +15,18 @@ export class ScoreService {
   }
   GameFinished(): void{
     this.isGameActive = false;
-    console.log(this.scoreCount);
+  }
+  StartGame(): void{
+    this.scoreCount = 0;
+    this.isGameActive = true;
+  }
+
+  GetScore(): number {
+    return this.scoreCount;
+  }
+
+  IsGameActive(): boolean{
+    return this.isGameActive;
   }
 
 }

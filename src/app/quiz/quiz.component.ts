@@ -13,7 +13,7 @@ export class QuizComponent implements OnInit {
   constructor(
     private countriesService: CountryQuizService,
     private answerService: AnswerService,
-    private scoreService: ScoreService
+    public scoreService: ScoreService
     ) { }
 
   answers: string[];
@@ -22,8 +22,10 @@ export class QuizComponent implements OnInit {
   countries: string[];
   correctAnswer: string;
   isQuestionAnswered: boolean;
+  tempAnswer: string;
 
   ngOnInit(): void {
+    this.scoreService.StartGame();
     this.answers = [];
     this.countriesService.getCountries().subscribe(observer => {
       this.countries = [];
@@ -56,19 +58,20 @@ export class QuizComponent implements OnInit {
   }
 
   onCheckAnswer(answer: string): void {
+    this.tempAnswer = answer;
     this.answerService.correct = this.correctAnswer;
     this.isQuestionAnswered = true;
     this.answerService.answerSubject.next(answer);
-    this.GameEngine(answer);
 
   }
-  GameEngine(answer: string){
-    if (this.correctAnswer === answer )
+  onNext(): void{
+    if (this.correctAnswer === this.tempAnswer )
     {
       this.scoreService.AddPoint();
     }else{
       this.scoreService.GameFinished();
     }
   }
+
 
 }

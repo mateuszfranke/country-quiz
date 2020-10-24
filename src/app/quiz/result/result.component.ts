@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ScoreService} from '../../services/score.service';
 
 @Component({
   selector: 'app-result',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultComponent implements OnInit {
 
-  constructor() { }
+  score: number;
+
+  constructor(private scoreService: ScoreService) { }
 
   ngOnInit(): void {
+    this.score = this.scoreService.GetScore();
+  }
+
+  onTryAgain(){
+    this.scoreService.StartGame();
   }
 
 }

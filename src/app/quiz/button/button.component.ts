@@ -23,15 +23,10 @@ export class ButtonComponent implements OnInit {
 
       if (response === this.answer)
       {
-        console.log('should be red' +  response);
-        this.scoreService.GameFinished();
         this.isRed = true;
       }
-
       if (this.answer === this.answerService.correct)
       {
-        console.log(`Correct answer is ${this.answer}`);
-        this.scoreService.AddPoint();
         this.correctAnswer = true;
       }
       else {
@@ -39,8 +34,6 @@ export class ButtonComponent implements OnInit {
       }
     });
   }
-
-
 
   getClass(){
     let cls = '';
