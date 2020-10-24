@@ -1,14 +1,19 @@
 .container{
   display: grid;
   grid-template-columns: 1fr;
+  justify-items: start;
+
 }
 .quiz-container{
   width: 450px;
   background: white;
-  min-height: 500px;
+  height: 400px;
   border-radius: 24px;
   padding-left: 40px;
   padding-right: 40px;
+  display: grid;
+  grid-row-gap: 0px;
+  align-items: center;
 }
 .font-header {
   font-family: 'Poppins', sans-serif;
@@ -25,7 +30,25 @@
 }
 
 .question-bar{
-  margin-bottom: 20px;
-  margin-top: 40px;
+  /*margin-bottom: 20px;*/
+  /*margin-top: 40px;*/
 }
 
+.btn-text{
+  background-color: #F9A826;
+  box-shadow: 0px 2px 4px rgba(252, 168, 47, 0.4);
+  border-radius: 12px;
+  width: 100px;
+  height: 50px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: white;
+  font-size: 16px;
+  justify-self: end;
+  text-align: center;
+  display: grid;
+}
+
+.blank{
+  height:60px;
+}

@@ -2,5 +2,7 @@
   <div class="answer-btn" [ngClass] ="getClass()">
     <div class="letter-text">{{letter}}</div>
     <div class="answer-text">{{answer}}</div>
+    <img *ngIf="correctAnswer" src="assets/check-circle-outline-3.png">
+    <img *ngIf="isRed" src="assets/close-circle-outline.png">
   </div>
 </div>

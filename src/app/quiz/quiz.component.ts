@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CountryQuizService} from '../services/country-quiz.service';
 import {AnswerService} from '../services/answer.service';
+import {ScoreService} from '../services/score.service';
 
 @Component({
   selector: 'app-quiz',
@@ -9,13 +10,18 @@ import {AnswerService} from '../services/answer.service';
 })
 export class QuizComponent implements OnInit {
 
-  constructor(private countriesService: CountryQuizService, private answerService: AnswerService) { }
+  constructor(
+    private countriesService: CountryQuizService,
+    private answerService: AnswerService,
+    private scoreService: ScoreService
+    ) { }
 
   answers: string[];
   letters: string[] = ['A', 'B', 'C', 'D'];
   question: string;
   countries: string[];
   correctAnswer: string;
+  isQuestionAnswered: boolean;
 
   ngOnInit(): void {
     this.answers = [];
@@ -31,8 +37,7 @@ export class QuizComponent implements OnInit {
   prepareQuestionAndAnswer(): void{
     const max: number = (this.answers.length - 1);
     const min = 0;
-    let country = this.answers[Math.floor(Math.random() * (max - min) + min)];
-
+      let country = this.answers[Math.floor(Math.random() * (max - min) + min)];
       this.countriesService.getCapitalCityFromCountry(country).subscribe(observer => {
       this.correctAnswer = country;
       this.question = `${observer} is the capital of`;
@@ -52,8 +57,18 @@ export class QuizComponent implements OnInit {
 
   onCheckAnswer(answer: string): void {
     this.answerService.correct = this.correctAnswer;
-    console.log('anser emitted ' + answer);
+    this.isQuestionAnswered = true;
     this.answerService.answerSubject.next(answer);
+    this.GameEngine(answer);
+
+  }
+  GameEngine(answer: string){
+    if (this.correctAnswer === answer )
+    {
+      this.scoreService.AddPoint();
+    }else{
+      this.scoreService.GameFinished();
+    }
   }
 
 }

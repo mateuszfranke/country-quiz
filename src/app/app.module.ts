@@ -6,13 +6,15 @@ import { FooterComponent } from './footer/footer.component';
 import { QuizComponent } from './quiz/quiz.component';
 import {HttpClientModule} from '@angular/common/http';
 import { ButtonComponent } from './quiz/button/button.component';
+import { ResultComponent } from './quiz/result/result.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     QuizComponent,
-    ButtonComponent
+    ButtonComponent,
+    ResultComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AnswerService} from '../../services/answer.service';
-import {observable} from 'rxjs';
-import {log} from 'util';
+import {ScoreService} from '../../services/score.service';
 
 @Component({
   selector: 'app-button',
@@ -16,7 +15,8 @@ export class ButtonComponent implements OnInit {
   correctAnswer: boolean;
   isRed: boolean;
 
-  constructor(private answerService: AnswerService) { }
+  constructor(private answerService: AnswerService,
+              private scoreService: ScoreService) { }
 
   ngOnInit(): void {
     this.answerService.answerSubject.subscribe(response => {
@@ -24,12 +24,14 @@ export class ButtonComponent implements OnInit {
       if (response === this.answer)
       {
         console.log('should be red' +  response);
+        this.scoreService.GameFinished();
         this.isRed = true;
       }
 
       if (this.answer === this.answerService.correct)
       {
         console.log(`Correct answer is ${this.answer}`);
+        this.scoreService.AddPoint();
         this.correctAnswer = true;
       }
       else {
@@ -37,6 +39,7 @@ export class ButtonComponent implements OnInit {
       }
     });
   }
+
 
 
   getClass(){

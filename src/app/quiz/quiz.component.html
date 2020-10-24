@@ -2,12 +2,16 @@
   <div class="font-header">Country quiz</div>
   <div class="quiz-container">
     <div class="font-question question-bar">{{question}}</div>
-    <div></div>
-      <app-button
+    <app-button
         *ngFor="let answer of answers; index as i"
         (click) ="onCheckAnswer(answer)"
         [answer] ="answer"
         [letter] ="letters[i]"
       ></app-button>
+    <div class="btn-text" *ngIf="isQuestionAnswered">
+        <div style="align-self: center;text-align: center;">Next</div>
+      </div>
+    <div *ngIf="!isQuestionAnswered" class="blank"></div>
   </div>
+<!--  <app-result *ngIf=""></app-result>-->
 </div>
