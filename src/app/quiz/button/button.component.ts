@@ -14,11 +14,19 @@ export class ButtonComponent implements OnInit {
 
   correctAnswer: boolean;
   isRed: boolean;
+  height: number;
 
   constructor(private answerService: AnswerService,
               private scoreService: ScoreService) { }
 
   ngOnInit(): void {
+    if (this.answer.length > 50)
+    {
+      this.height = 80;
+    }
+    else{
+      this.height = 40;
+    }
     this.answerService.answerSubject.subscribe(response => {
       this.isRed = false;
       if (response === this.answer)
@@ -33,7 +41,6 @@ export class ButtonComponent implements OnInit {
       else {
         this.correctAnswer = false;
       }
-      console.log(`${this.answer}, red ${this.isRed}`);
     });
   }
 
