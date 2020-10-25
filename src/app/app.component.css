@@ -3,4 +3,27 @@
   grid-template-columns: 1fr;
   justify-items: center;
   margin-top: 100px;
+  z-index: 1;
+}
+
+.rectanlge {
+  position: absolute;
+  width: 700px;
+  height: 1130px;
+  z-index: -1;
+  background: rgba(96, 102, 208, 0.7);
+  border-radius: 33px;
+  transform: rotate(-65.14deg);
+}
+.rectanle-2{
+  position: absolute;
+  width: 914px;
+  height: 1130px;
+  left: 797px;
+  top: -500px;
+  z-index: -1;
+
+  background: rgba(96, 102, 208, 0.7);
+  border-radius: 33px;
+  transform: rotate(-65.14deg);
 }
