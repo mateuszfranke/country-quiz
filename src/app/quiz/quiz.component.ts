@@ -45,6 +45,7 @@ export class QuizComponent implements OnInit {
 
   randomQuestion(): void{
     this.get4RandomCountries();
+
     this.prepareQuestionAndAnswer();
   }
 
@@ -72,9 +73,25 @@ export class QuizComponent implements OnInit {
     const arr: string[] = [];
     const max: number = (this.countries.length - 1);
     const min = 0;
+    let uniqueIndex: number[] = [];
+    let x = Math.floor(Math.random() * (max - min) + min);
+    let isUnique = false;
+    while (!isUnique){
+      for (let i = 0; i < 4; i++)
+      {
+        const randomIndex = Math.floor(Math.random() * (max - min) + min);
+        uniqueIndex.push(randomIndex);
+      }
+      const distinctArray = uniqueIndex.filter((n, i) => uniqueIndex.indexOf(n) === i);
+      if (distinctArray.length === 4){
+        isUnique = true;
+      }else {
+        uniqueIndex = [];
+      }
+    }
     for (let i = 0; i < 4; i++)
     {
-      arr.push(this.countries[Math.floor(Math.random() * (max - min) + min)]);
+      arr.push(this.countries[uniqueIndex[i]]);
     }
     this.answers = arr;
   }

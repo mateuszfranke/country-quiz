@@ -20,7 +20,7 @@ export class ButtonComponent implements OnInit {
               private scoreService: ScoreService) { }
 
   ngOnInit(): void {
-    if (this.answer.length > 50)
+    if (this.answer.length > 35)
     {
       this.height = 80;
     }
